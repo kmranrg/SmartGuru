@@ -50,8 +50,11 @@ class ChatMessage(ft.Row):
 
 def main(page: ft.Page):
     # page.horizontal_alignment = "stretch"
-    page.title = "SmartGuru"
+    page.title = "SmartGuru AI"
     page.theme_mode = "light"
+    page.fonts = {
+        "organical": "fonts/organical.ttf"
+    }
 
     # creating the object of SmartGurucool class
     smart_guru = SmartGurucool()
@@ -126,13 +129,15 @@ def main(page: ft.Page):
         expand=True,
         border_radius=20,
         on_submit=send_message_click,
+        border_color=ft.colors.BLUE
     )
 
     # Add everything to the page
     page.add(
+        ft.Row([ft.Text("SMARTGURU AI", font_family="organical", style="headlineLarge", color="blue")], alignment="center"),
         ft.Container(
             content=chat,
-            border=ft.border.all(1, ft.colors.OUTLINE),
+            border=ft.border.all(2, ft.colors.BLUE),
             border_radius=20,
             padding=10,
             expand=True,
@@ -144,9 +149,10 @@ def main(page: ft.Page):
                     icon=ft.icons.SEND_ROUNDED,
                     tooltip="Send message",
                     on_click=send_message_click,
+                    icon_color=ft.colors.BLUE
                 ),
             ]
         ),
     )
 
-ft.app(port=8550, target=main, view=ft.WEB_BROWSER)
+ft.app(port=8550, target=main, view=ft.WEB_BROWSER, assets_dir="assets")
